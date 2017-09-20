@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
     
     Set<Person> findByName(String name);
+
+    Person findOne(Long id);
     
     @Query(value = "SELECT * FROM PERSON p WHERE p.name like :pattern", nativeQuery = true)
     Set<Person> searchNatively(@Param("pattern") String pattern);

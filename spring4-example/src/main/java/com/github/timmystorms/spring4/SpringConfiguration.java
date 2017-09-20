@@ -33,7 +33,7 @@ public class SpringConfiguration {
     public EntityManagerFactory entityManagerFactory() throws SQLException {
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setGenerateDdl(true);
-        vendorAdapter.setShowSql(true);
+//        vendorAdapter.setShowSql(true);
         final LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("com.github.timmystorms.spring4");

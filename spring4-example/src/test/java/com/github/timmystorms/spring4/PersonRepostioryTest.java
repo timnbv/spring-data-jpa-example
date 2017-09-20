@@ -31,7 +31,14 @@ public class PersonRepostioryTest {
         Person person = repo.save(new Person("John Doe"));
         Assert.assertNotNull(person.getId());
     }
-    
+
+
+//    @Test
+//    public void findPersonById() {
+//        Person person = repo.save(new Person("John Doe"));
+//        Assert.assertNotNull(repo.findOne(1L));
+//    }
+
     @Test
     public void findPersonByName() {
         Person person = repo.save(new Person("John Doe"));
@@ -52,18 +59,18 @@ public class PersonRepostioryTest {
     
     @Test
     public void findPagedPersons() {
-        for (int i = 0; i < 10; i++) {
-            repo.save(new Person("John Doe"));
+        for (int i = 0; i < 10000; i++) {
+            repo.save(new Person("John Doe" + i));
         }
         Page<Person> result = repo.findAll(new PageRequest(0, 5));
-        Assert.assertEquals(10, result.getTotalElements());
-        Assert.assertEquals(2, result.getTotalPages());
+        Assert.assertEquals(10000, result.getTotalElements());
+        Assert.assertEquals(2000, result.getTotalPages());
         Assert.assertEquals(5, result.getNumberOfElements());
         Assert.assertEquals(0, result.getNumber());
         result = repo.findAll(new PageRequest(2, 5));
-        Assert.assertEquals(10, result.getTotalElements());
-        Assert.assertEquals(2, result.getTotalPages());
-        Assert.assertEquals(0, result.getNumberOfElements());
+        Assert.assertEquals(10000, result.getTotalElements());
+        Assert.assertEquals(2000, result.getTotalPages());
+        Assert.assertEquals(5, result.getNumberOfElements());
         Assert.assertEquals(2, result.getNumber());
     }
 
